@@ -1,5 +1,6 @@
 import random
 import os
+import time
 
 def Calculator():
     running = True
@@ -74,18 +75,41 @@ def DeleteText():
     FileName = input("What is the name of the file you would like to delete?\n")
     os.remove(FileName)
 
+def DiceRoll():
+    Dice = random.randint(0,6)
+    #choice of sides on the dice (new thing to add)
+    print("Rolling the dice...")
+    time.sleep(3)
+    print("You rolled a " + Dice)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def BigMenu():
     runningBigMenu = True
     while runningBigMenu:
 
         try:
-            BigMenuChoice = int(input("======THE BIG MENU======\n\n 1. Calculator\n 2. Text files\n"))
+            BigMenuChoice = int(input("======THE BIG MENU======\n\n 1. Calculator\n 2. Text files\n 3. Roll the dice\n 4. Exit\n"))
             
             if BigMenuChoice == 1:
                 Calculator()
             elif BigMenuChoice == 2:
                 Text()
             elif BigMenuChoice == 3:
+                DiceRoll()
+            elif BigMenuChoice == 4:
                 exit()
 
         except ValueError:
