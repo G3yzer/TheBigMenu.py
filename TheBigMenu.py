@@ -1,10 +1,11 @@
+from ast import Delete
 import random
 import os
 import time
 
 def Calculator():
-    running = True
-    while running == True:
+    runningCalc = True
+    while runningCalc:
         number1 = int(input("\nNUMBER1: "))
         number2 = int(input("\nNUMBER2: "))
         operator = str(input("\nOPERATOR: "))
@@ -25,25 +26,28 @@ def Calculator():
             print("error")
 
         run = input("Would like run again? Y/N \n")
-        if run == "N":
-            running = False
+        if run.upper() == "N":
+            runningCalc = False
+            BigMenu()
 
 def Text():
     runningText = True
     while runningText:
 
         try:
-            menuChoice = int(input("======MENU======\n\n 1. Creat a text file\n 2. Write to a text file\n 3. Append to a text file\n 4. Delete a text file\n 5. exit\n"))
+            menuChoice = int(input("\n======TEXT FILES MENU======\n\n 1. Create a text file\n 2. Write to a text file\n 3. Read from a text file\n 4. Append to a text file\n 5. Delete a text file\n 6. exit\n"))
             
             if menuChoice == 1:
                 CreateText()
             elif menuChoice == 2:
                 WriteText()
             elif menuChoice == 3:
-                AppendText()
+                ReadText()
             elif menuChoice == 4:
-                DeleteText()
+                AppendText()
             elif menuChoice == 5:
+                DeleteText()
+            elif menuChoice == 6:
                 BigMenu()
         except ValueError:
             print("Invalid Input.")
@@ -64,6 +68,13 @@ def WriteText():
     f.write(textToWrite)
     f.close
 
+def ReadText():
+    FileName = input("What is the name of the file you would like to read from?\n")
+    f= open(FileName, "r")
+    print("\nHere are the contents of your file:")
+    print(f.read())
+    f.close
+
 def AppendText():
     FileName = input("What is the name of the file you would like to append to?\n")
     f= open(FileName, "a+")
@@ -75,23 +86,19 @@ def DeleteText():
     FileName = input("What is the name of the file you would like to delete?\n")
     os.remove(FileName)
 
-def DiceRoll():
-    Dice = random.randint(0,6)
-    #choice of sides on the dice (new thing to add)
-    print("Rolling the dice...")
+def RandomNumber():
+    print("What are the numbers you'd like a random number between")
+    RandomNumberBottom = int(input("Lowest?\n"))
+    RandomNumberTop = int(input("Highest?\n"))    
+    RanNumber = random.randint(RandomNumberBottom, RandomNumberTop)
+    print("Finding random number...")
     time.sleep(3)
-    print("You rolled a " + Dice)
+    print("Your number is " + str(RanNumber))
+    time.sleep(2.5)
 
-
-
-
-
-
-
-
-
-
-
+def exiting():
+    print("\nur gay")
+    exit()
 
 
 
@@ -101,16 +108,16 @@ def BigMenu():
     while runningBigMenu:
 
         try:
-            BigMenuChoice = int(input("======THE BIG MENU======\n\n 1. Calculator\n 2. Text files\n 3. Roll the dice\n 4. Exit\n"))
+            BigMenuChoice = int(input("\n======THE BIG MENU======\n\n 1. Calculator\n 2. Text files\n 3. Random number\n 4. Exit\n"))
             
             if BigMenuChoice == 1:
                 Calculator()
             elif BigMenuChoice == 2:
                 Text()
             elif BigMenuChoice == 3:
-                DiceRoll()
+                RandomNumber()
             elif BigMenuChoice == 4:
-                exit()
+                exiting()
 
         except ValueError:
             print("Invalid Input.")
