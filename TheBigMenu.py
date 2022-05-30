@@ -1,4 +1,3 @@
-from ast import Delete
 import random
 import os
 import time
@@ -96,6 +95,30 @@ def RandomNumber():
     print("Your number is " + str(RanNumber))
     time.sleep(2.5)
 
+def guessTheNumber():
+    print("\n=====GUESS THE NUMBER=====\n")
+    NumberRun = True
+    while NumberRun:
+        randomNumber = random.randint(0,100)
+        UserGuess = input(int("Guess the number between 1 - 100"))
+        GuessRun = True
+        while GuessRun:
+            if UserGuess > randomNumber:
+                print("Lower")
+                pass
+            elif UserGuess < randomNumber:
+                print("Higher")
+                pass
+            elif UserGuess == randomNumber:
+                print("yay")
+                GuessRun = False
+            
+
+
+
+
+
+
 def exiting():
     print("\nur gay")
     exit()
@@ -108,7 +131,7 @@ def BigMenu():
     while runningBigMenu:
 
         try:
-            BigMenuChoice = int(input("\n======THE BIG MENU======\n\n 1. Calculator\n 2. Text files\n 3. Random number\n 4. Exit\n"))
+            BigMenuChoice = int(input("\n======THE BIG MENU======\n\n 1. Calculator\n 2. Text files\n 3. Random number\n 4. Guess the number\n 5. Exit\n"))
             
             if BigMenuChoice == 1:
                 Calculator()
@@ -117,6 +140,8 @@ def BigMenu():
             elif BigMenuChoice == 3:
                 RandomNumber()
             elif BigMenuChoice == 4:
+                guessTheNumber()
+            elif BigMenuChoice == 5:
                 exiting()
 
         except ValueError:
